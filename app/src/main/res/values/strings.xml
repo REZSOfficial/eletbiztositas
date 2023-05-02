@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Projekt</string>
+    <string name="username">Felhasználónév</string>
+    <string name="password">Jelszó</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="guestLogin">Bejelentkezés vendégként</string>
+    <string name="register">Regisztráció</string>
+    <string name="email">E-mail cím</string>
+    <string name="cancel">Vissza</string>
+    <string name="passwordAgain">Jelszó újra</string>
+    <string name="channel_name">MAIN</string>
+    <string name="channel_description">THIS IS THE MAIN CHANNEL</string>
+
+    <string-array name="companies">
+        <item>Generali</item>
+        <item>Aegon</item>
+        <item>K&amp;H</item>
+        <item>UniCredit</item>
+        <item>Allianz</item>
+        <item>Tesco</item>
+        <item>Kisbolt</item>
+        <item>OTP</item>
+    </string-array>
+
+    <string-array name="prices">
+        <item>3450</item>
+        <item>3730</item>
+        <item>4530</item>
+        <item>2990</item>
+        <item>3670</item>
+        <item>3260</item>
+        <item>4270</item>
+        <item>3980</item>
+    </string-array>
+</resources>
