@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PREF_KEY = MainActivity.class.getPackage().toString();
     EditText emailEditText;
     EditText passwordEditText;
+    TextView error;
 
     FirebaseAuth auth;
 
@@ -38,25 +40,32 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+        error = findViewById(R.id.loginError);
 
         preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
     }
 
 
     public void login(View view) {
-        String email = String.valueOf(emailEditText.getText());
-        String password = String.valueOf(passwordEditText.getText());
+        String email;
+        String password;
+        if (!String.valueOf(emailEditText.getText()).equals("") && !String.valueOf(passwordEditText.getText()).equals("")){
+            email = String.valueOf(emailEditText.getText());
+            password = String.valueOf(passwordEditText.getText());
 
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    nextIntent(email);
-                }else{
-
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        nextIntent(email);
+                    }else{
+                        error.setText("Hibás jelszó vagy email cím");
+                    }
                 }
-            }
-        });
+            });
+        }else {
+            error.setText("Üresen hagyott mező");
+        }
     }
 
     private void nextIntent(String email) {
